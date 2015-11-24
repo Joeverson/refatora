@@ -1,0 +1,48 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.swing.text.AbstractDocument.BranchElement;
+
+public class Cliente {
+	private String nome;
+	private Collection fitasAlugadas = new ArrayList();
+	
+	
+	public Cliente(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void adicionaAluguel(Aluguel aluguel) {
+		this.fitasAlugadas.add(aluguel);
+	}
+	
+	public String extrato(){
+		String breakLine = System.getProperty("line.separator");
+		double valorTotal = 0.0;
+		int pontosDeAlugadorFrequente = 0;
+		
+		Iterator alugueis = this.fitasAlugadas.iterator();
+		
+		String extrato = "Registro de Alugueis de " + this.getNome() + breakLine;
+		
+		while(alugueis.hasNext()){
+			double valorCorrente = 0.0;
+			
+			Aluguel eachAluguel = (Aluguel)alugueis.next();
+			
+			
+		}
+		
+		
+		return "jo";
+	}
+	
+	
+}

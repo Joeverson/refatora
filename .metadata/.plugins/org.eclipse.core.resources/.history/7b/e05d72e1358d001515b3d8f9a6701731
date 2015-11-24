@@ -1,0 +1,23 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Aluguel {	
+	private Fita fitas;
+	private Integer diasAlugados;
+		
+	public Aluguel(Fita fita, int diasAlugada) {
+		this.fitas = fita;		
+		this.diasAlugados = diasAlugada;
+	}
+
+	public Integer getDiasAlugada() {
+		return this.diasAlugados;
+	}
+	
+	public Fita getfitas() {
+		return this.fitas;
+	}	
+	
+}

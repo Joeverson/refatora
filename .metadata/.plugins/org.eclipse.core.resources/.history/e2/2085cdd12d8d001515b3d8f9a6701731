@@ -1,0 +1,80 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+public class Aluguel {
+	public static final int NORMAL = 0;
+	public static final int LANÇAMENTO = 1;
+	public static final int INFANTIL = 2;
+	
+	private Collection fitasAlugadas = new ArrayList();
+	private int diasAlugada;
+	private double valorTotal = 0.0;
+	
+	public Aluguel(Fita fita, int diasAlugada) {
+		super();
+		fitasAlugadas.add(fita);
+		
+		this.diasAlugada = diasAlugada;
+	}
+
+	public Fita getFita() {
+		return fita;
+	}
+
+	public int getDiasAlugada() {
+		return diasAlugada;
+	}
+	
+	public String extrato(){
+		String breakLine = System.getProperty("line.separator");
+				
+		Iterator alugueis = this.fitasAlugadas.iterator();		
+		String extrato = "Registro de Alugueis de " + this.getNome() + breakLine;
+		
+		while(alugueis.hasNext()){
+			double valorCorrente = 0.0;
+			
+			Aluguel eachAluguel = (Aluguel)alugueis.next();
+			
+			switch(eachAluguel.getFita().getCodigoDePreco()){
+				case Aluguel.NORMAL:
+					//TODO aqui que ta com o problema que não sei que bosta é.. pa o dois e depois vê se é maior de dois???
+					valorCorrente += 2;
+					if(eachAluguel.getDiasAlugada() > 2){
+						valorCorrente += (eachAluguel.getDiasAlugada() - 2)* 1.5;
+					}
+					break;
+				case Aluguel.LANÇAMENTO:
+					valorCorrente += eachAluguel.getDiasAlugada()*3;
+					break;
+				case Aluguel.INFANTIL:
+					valorCorrente += 1.5;
+					if(eachAluguel.getDiasAlugada() > 3){
+						valorCorrente += (eachAluguel.getDiasAlugada() - 3) * 1.5;
+					}
+					break;			
+			}
+			
+			this.pontosDeAlugadorFrequente++;
+			
+			//adicionando bonus para o fidelidade
+			if(eachAluguel.getDiasAlugada() > 2 && eachAluguel.getDiasAlugada() == Aluguel.LANÇAMENTO){
+				this.pontosDeAlugadorFrequente++;
+			}
+			
+			// mostra valores para este aluguel
+			extrato += "\t" + eachAluguel.getFita().getTitulo() + "\t" + valorCorrente + breakLine;
+			
+			valorTotal += valorCorrente;
+		}
+		
+		extrato += "Valor total devido: " + valorTotal + breakLine;
+		extrato += "Voce acumulou " + this.pontosDeAlugadorFrequente +" pontos de alugador frequente";		
+		
+		return extrato;
+	}
+	
+}

@@ -1,0 +1,29 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Cliente {
+	private String nome;
+	private Collection fitasAlugadas = new ArrayList();
+	
+	
+	public Cliente(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public void adicionaAluguel(Aluguel aluguel) {
+		this.fitasAlugadas.add(aluguel);
+	}
+	
+	public String extrato(){
+		String a = System.getProperty("line.separator");
+		return a;
+	}
+	
+	
+}

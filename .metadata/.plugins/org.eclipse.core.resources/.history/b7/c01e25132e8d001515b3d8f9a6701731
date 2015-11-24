@@ -1,0 +1,28 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Aluguel {
+	public static final int NORMAL = 0;
+	public static final int LANÇAMENTO = 1;
+	public static final int INFANTIL = 2;
+	
+	private Map<int,int> fitas = new HashMap<int,int>();
+	private int diasAlugada;
+	private Cliente cliente;
+	
+	public Aluguel(Fita fita, int diasAlugada, Cliente cliente) {
+			
+		this.diasAlugada = diasAlugada;
+		this.cliente = cliente;
+	}
+
+	public int getDiasAlugada() {
+		return diasAlugada;
+	}
+	
+	
+	
+	
+}

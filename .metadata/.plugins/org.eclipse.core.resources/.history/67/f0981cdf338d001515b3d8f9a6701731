@@ -1,0 +1,41 @@
+package br.com.nun.refactorCode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Aluguel {
+	public static final int NORMAL = 0;
+	public static final int LANÇAMENTO = 1;
+	public static final int INFANTIL = 2;
+	
+	private Collection<Fita> fitas = new ArrayList<Fita>();
+	private Collection<Integer> diasAlugados = new ArrayList<Integer>();
+		
+	private Cliente cliente;
+	
+	public Aluguel(Fita fita, int diasAlugada, Cliente cliente) {
+		this.fitas.add(fita);		
+		this.diasAlugados.add(diasAlugada);
+		this.cliente = cliente;
+	}
+
+	public Collection<Integer> getDiasAlugada() {
+		return this.diasAlugados;
+	}
+	
+	public Collection<Fita> getfitas() {
+		return this.fitas;
+	}
+	
+	public Cliente getCliente(){
+		return this.cliente;
+	}
+	
+	public void setFita(Fita fita, int diasAlugados){
+		this.fitas.add(fita);
+		this.diasAlugados.add(diasAlugados);
+	}
+
+	
+	
+}

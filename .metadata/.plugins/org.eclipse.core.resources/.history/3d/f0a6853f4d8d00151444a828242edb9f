@@ -1,0 +1,61 @@
+package br.com.nun.refactorCode;
+
+import java.util.Iterator;
+
+public class Financeiro {
+	private CheckIn checkin;
+	private double valorTotal = 0.0;
+	
+	public Financeiro(CheckIn checkin){
+		this.checkin = checkin;
+	}
+	
+	public String extrato(){
+		String breakLine = System.getProperty("line.separator");
+				
+		Iterator<Aluguel> aluguel = this.checkin.getAlugueis().iterator();
+		
+		String extrato = "Registro de Alugueis de " + this.checkin.getCliente().getNome() + breakLine;
+		
+		while(aluguel.hasNext()){			
+			
+			Aluguel alugar = (CheckIn)aluguel.next();
+			
+			switch(alugar.getClassificacao()){
+				case Classificacao.NORMAL:
+					//TODO aqui que ta com o problema que não sei que bosta é.. pa o dois e depois vê se é maior de dois???
+					valorCorrente += 2;
+					if(eachAluguel.getDiasAlugada() > 2){
+						valorCorrente += (eachAluguel.getDiasAlugada() - 2)* 1.5;
+					}
+					break;
+				case Aluguel.LANÇAMENTO:
+					valorCorrente += eachAluguel.getDiasAlugada()*3;
+					break;
+				case Aluguel.INFANTIL:
+					valorCorrente += 1.5;
+					if(eachAluguel.getDiasAlugada() > 3){
+						valorCorrente += (eachAluguel.getDiasAlugada() - 3) * 1.5;
+					}
+					break;			
+			}
+			
+			this.pontosDeAlugadorFrequente++;
+			
+			//adicionando bonus para o fidelidade
+			if(eachAluguel.getDiasAlugada() > 2 && eachAluguel.getDiasAlugada() == Aluguel.LANÇAMENTO){
+				this.pontosDeAlugadorFrequente++;
+			}
+			
+			// mostra valores para este aluguel
+			extrato += "\t" + eachAluguel.getFita().getTitulo() + "\t" + valorCorrente + breakLine;
+			
+			valorTotal += valorCorrente;
+		}
+		
+		extrato += "Valor total devido: " + valorTotal + breakLine;
+		extrato += "Voce acumulou " + this.pontosDeAlugadorFrequente +" pontos de alugador frequente";		
+		
+		return extrato;
+	}
+}

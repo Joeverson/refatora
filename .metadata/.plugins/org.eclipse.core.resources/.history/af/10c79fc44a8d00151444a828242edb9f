@@ -1,0 +1,20 @@
+package br.com.nun.refactorCode;
+
+class Classificacao {
+	public static final int NORMAL = 0;
+	public static final int LANCAMENTO = 1;
+	public static final int INFANTIL = 2;
+	
+	public static int  getClassificacao(String type){
+		switch(type){
+			case "NORMAL":
+				return Classificacao.NORMAL;
+			case "LANCAMENTO":
+				return Classificacao.LANCAMENTO;
+			case "INFANTIL":
+				return Classificacao.INFANTIL;				
+		}
+		
+		return 0;
+	}
+}
